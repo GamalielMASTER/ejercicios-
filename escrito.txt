@@ -1,0 +1,48 @@
+===========================================================================
+[[[[[[[[[[[[ejercicio (N3)]]]]]]]]]]]]
+--primero llamamos su base de datos ...
+USE world;
+--el posedimiento para hacer 
+DROP PROCEDURE IF EXISTS `QUE_ME_MUESTRE_PAIS_CIUDAD_IDIOMA`;
+USE world $$
+--volvemos a llamarlo 
+DELIMITER $$
+CREATE PROCEDURE `QUE_ME_MUESTRE_PAIS_CIUDAD_IDIOMA`()
+BEGIN
+--seleccionamos cual puede ejecutarce 
+	SELECT  country.name as pais, city.name AS ciudad,  countrylanguage.language as idioma
+    FROM city 
+    INNER JOIN 
+		country on city.CountryCode = country.Code 
+    INNER JOIN
+--nos muestra que va ejecutarse del usuario...
+		countrylanguage ON country.Code= countrylanguage.CountryCode;  
+--al final cerramos con END...
+END $$
+DELIMITER ;
+
+___________________________________________________________________________
+[[[[[[[[[[[[ejercicio (N4)]]]]]]]]]]]] 
+--seleccionamos nuestra base de datos 
+USE db_supermercado;
+--mostramos nuestro prosedimiento
+DROP PROCEDURE IF EXISTS `muestra_nombre_y_apellido_de_la_empresa`;
+USE db_supermercado $$
+--volvemos a crear nuestro prosedimiento 
+DELIMITER $$
+CREATE PROCEDURE `muestra_nombre_y_apellido_de_la_empresa`(IN num_orden INT)
+BEGIN
+--seleccionamos las funciones o los cuadros que nos mostrara 
+    SELECT orders.OrderID , employees.FirstName, employees.LastName , customers.CompanyName 
+    FROM orders
+--despues de ordenar ya segimos a ver que nos imprimira
+    INNER JOIN 
+		employees ON orders.EmployeeID = employees.EmployeeID
+	INNER JOIN
+--los cuadros que nos mostrara 
+		customers ON orders.CustomerID = customers.CustomerID
+	WHERE orders.OrderID = num_orden;
+--al final ceramos coon END...
+END $$
+DELIMITER ;
+====================================================================================FIN...
