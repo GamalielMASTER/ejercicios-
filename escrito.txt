@@ -5,8 +5,10 @@
 USE word;
 --luego 
 DELIMITER $
+--creamos el prosedimiento y le damos la cantidad del texto...
 CREATE PROCEDURE buscar(IN n VARCHAR(155))
 BEGIN
+--seleccionamos con select 
 SELECT * FROM City WHERE Name=n;
 END$
 
@@ -14,10 +16,11 @@ END$
 CALL buscar('Kabul');
 __________________________________________________
  "ejercicio N2"
- --para llamar a un alista 
+ --para llamar a una lista y luego crear el prosedimiento 
 DELIMITER $
 CREATE PROCEDURE lista()
 BEGIN
+--seccionamos el nombre del pais... 
 SELECT name FROM country;
 END$
 --llamamos a la lista
