@@ -1,0 +1,26 @@
+=======================================================0
+ "ejercicio N1"
+
+ --PRIMERO SE PONE 
+USE word;
+--luego 
+DELIMITER $
+CREATE PROCEDURE buscar(IN n VARCHAR(155))
+BEGIN
+SELECT * FROM City WHERE Name=n;
+END$
+
+
+CALL buscar('Kabul');
+__________________________________________________
+ "ejercicio N2"
+ --para llamar a un alista 
+DELIMITER $
+CREATE PROCEDURE lista()
+BEGIN
+SELECT name FROM country;
+END$
+--llamamos a la lista
+
+CALL lista();
+=========================================================0
